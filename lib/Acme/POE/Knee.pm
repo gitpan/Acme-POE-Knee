@@ -1,7 +1,9 @@
 package Acme::POE::Knee;
 use strict;
 use POE;
-$VERSION = "1.01";
+use vars qw($VERSION);
+
+$VERSION = "1.02";
 
 sub new {
     my $class   = shift;

@@ -1,5 +1,8 @@
 Revision history for Perl extension POE::Knee
 
+1.02    Tue Aug 14 15:43:21 2001
+    - touched up the POD upon request
+    
 1.01    Tue Aug 14 10:19:43 2001
     - small cosmetic changes
 
