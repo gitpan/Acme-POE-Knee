@@ -1,7 +1,7 @@
 package Acme::POE::Knee;
 use strict;
 use POE;
-$VERSION = "1.00";
+$VERSION = "1.01";
 
 sub new {
     my $class   = shift;
@@ -152,13 +152,14 @@ reference and the Acme::POE::Knee module will take care of the rest.
 
 =head1 USING Acme::POE::Knee
 
-Using POE::Knee is really easy.
+Using Acme::POE::Knee is really easy.
 This simple progam would already suffice:
 
+    use strict;
     use Acme::POE::Knee;
 
     my $pony = new Acme::POE::Knee;
-    $pone->race();
+    $pony->race();
     exit;
 
 This will use the defaults of the POE::Knee module, but you can of
@@ -172,8 +173,8 @@ rather persistant meme on #perl (you know who you are!).
 Basicly, we all wanted ponies.
 Well folks, here it is.
 
-It's source might be interesting for newcomers to POE to see how this
-time slicing works.
+It's source might be interesting to look at for newcomers to POE to see
+how this time slicing works.
 
 
 =head1 Learning more about POE

@@ -60,14 +60,13 @@ DESCRIPTION
     and the Acme::POE::Knee module will take care of the rest.
 
 USING Acme::POE::Knee
-    Using Acme::POE::Knee is really easy. This simple progam would already
+    Using POE::Knee is really easy. This simple progam would already
     suffice:
 
-        use strict;
         use Acme::POE::Knee;
 
         my $pony = new Acme::POE::Knee;
-        $pony->race();
+        $pone->race();
         exit;
 
     This will use the defaults of the POE::Knee module, but you can of
@@ -78,8 +77,8 @@ The Use of Acme::POE::Knee
     rather persistant meme on #perl (you know who you are!). Basicly, we all
     wanted ponies. Well folks, here it is.
 
-    It's source might be interesting to look at for newcomers to POE to see
-    how this time slicing works.
+    It's source might be interesting for newcomers to POE to see how this
+    time slicing works.
 
 Learning more about POE
     The POE Mailing List
