@@ -3,7 +3,7 @@ use strict;
 use POE;
 use vars qw($VERSION);
 
-$VERSION = "1.02";
+$VERSION = "1.10";
 
 sub new {
     my $class   = shift;
@@ -11,8 +11,13 @@ sub new {
     my $self    = { };
     my $data    = {
         dist    => 10,
-        delay   => 5,
-        ponies  => ['acme', 'dngor', 'Abigail', 'Co-Kane', 'MJD'],
+        ponies  => {
+            'dngor'     => 5,
+            'Abigail'   => 5.2, 
+            'Co-Kane'   => 5.4, 
+            'MJD'       => 5.6,
+            'acme'      => 5.8, 
+        },
     };  
 
     ### check for wrong input ###
@@ -36,7 +41,6 @@ sub new {
 
     ### fetch the data ###
     sub dist    { my $self = shift; $self->{dist}     }
-    sub delay   { my $self = shift; $self->{delay}    }
     sub ponies  { my $self = shift; $self->{ponies}   }
 
     return $self;
@@ -64,14 +68,14 @@ sub run {
 sub race {
     my $self = shift;
 
-    for my $name (@{ $self->ponies() } ) {
+    for my $name (@{[keys %{$self->ponies()}]} ) {
 
         POE::Session->create (  
            inline_states => { 
                _start  => \&_start,
                run     => \&run,
             },
-            args => [ $name, $self->delay(), $self->dist() ],
+            args => [ $name, $self->ponies()->{$name}, $self->dist() ],
         );
     }
     $poe_kernel->run();
@@ -100,30 +104,29 @@ Acme::POE::Knee - Time sliced pony race using the POE kernel.
     # Use POEny!
     use Acme::POE::Knee;
 
-    # Every Acme::POE::Knee race will require a set of arguments. There 
-    # are defaults but it's just more fun to set these yourselves.
-    # We set a distance the ponies must run, a maximum delay before
-    # they will reach the next stage and of course, we name our race
-    # ponies!
+    # Every Acme::POE::Knee race will require a set of arguments. 
+    # There are defaults but it's just more fun to set these 
+    # yourselves. We set a distance the ponies must run and of course 
+    # we name our race ponies! You'll have to specify the maximum 
+    # delay a pony can have before reaching the next stage.
+    # The lower the delay, the higher the chances are the pony will 
+    # win the race.
 
-	my $pony = new Acme::POE::Knee (
-	    dist	=> 20,
-	    delay	=> 4,
-	    ponies	=> [
-	        'JHI',
-	        'Randal',
-	        'dngor',
-	        'Damian',
-	        'Abigail',
-	        'MJD',
-	        'Larry',
-	    ],
-	);
-
-	# start	the	race
-	$pony->race( );
-
-	exit;
+    my $pony = new Acme::POE::Knee (
+    	dist        => 20,
+        ponies  => {
+            'dngor'     => 5,
+            'Abigail'   => 5.2, 
+            'Co-Kane'   => 5.4, 
+            'MJD'       => 5.6,
+            'acme'      => 5.8, 
+        },
+    );
+    
+    # start the race
+    $pony->race( );
+    
+    exit;
 
 
 =head1 QUICK LINKS
@@ -214,7 +217,7 @@ management.  You can reach POE's project summary page at
 
 =item Jos Boumans
 
-Jos Boumans is <boumans_at_frg.eur.nl>.  POE::Knee is his brainchild.
+Jos Boumans is <kane_at_cpan.org>.  POE::Knee is his brainchild.
 
 =item Rocco Caputo
 

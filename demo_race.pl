@@ -7,19 +7,16 @@ use Acme::POE::Knee;
         
 my $pony = new Acme::POE::Knee (
 	dist        => 20,
-        delay       => 4,
-        ponies      => [
-        	'JHI',
-                'Co-Kane',
-                'dngor',
-                'Damian',
-                'Abigail',
-                'MJD',
-                'Larry',
-      	],
+    ponies  => {
+        'dngor'     => 5,
+        'Abigail'   => 5.2, 
+        'Co-Kane'   => 5.4, 
+        'MJD'       => 5.6,
+        'acme'      => 5.8, 
+    },
 );
 
-# start the     race
+# start the race
 $pony->race( );
 
 exit;
